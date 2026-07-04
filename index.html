@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vishwajeet Kumar Sah – IT Infrastructure & Operations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0d1b2a;
+  --navy2: #1a2f55;
+  --teal: #0a7c6e;
+  --teal-light: #12a093;
+  --gold: #f0a500;
+  --gold-light: #fbbf24;
+  --slate: #334155;
+  --muted: #64748b;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{color:#fff;font-weight:800;font-size:16px;letter-spacing:-0.3px;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:8px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;transition:all 0.2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.nav-cta{background:var(--gold);color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;}
+.nav-cta:hover{background:var(--gold-light)!important;color:var(--navy)!important;}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,#0d1b2a 0%,#1a2f55 50%,#0a3d35 100%);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:60px;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-inner{max-width:1100px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal-light);margin-bottom:16px;}
+.hero-name{font-size:clamp(36px,5vw,58px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:12px;letter-spacing:-1px;}
+.hero-name em{color:var(--gold);font-style:normal;display:block;}
+.hero-title{font-size:18px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:28px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+.hero-tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);padding:5px 13px;border-radius:20px;font-size:12px;font-weight:500;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--navy);padding:12px 24px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);}
+.btn-ghost{border:1px solid rgba(255,255,255,0.25);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);}
+.hero-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:32px;backdrop-filter:blur(10px);}
+.hero-avatar{width:104px;height:104px;background:linear-gradient(135deg,var(--teal),var(--navy2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;margin-bottom:20px;border:4px solid rgba(255,255,255,0.18);box-shadow:0 12px 30px rgba(0,0,0,0.18);overflow:hidden;}
+.hero-avatar-btn{border:none;padding:0;cursor:pointer;appearance:none;-webkit-appearance:none;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.hero-avatar-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 34px rgba(0,0,0,0.24);}
+.hero-avatar-btn:focus-visible{outline:3px solid rgba(251,191,36,0.8);outline-offset:4px;}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.hero-stat{background:rgba(255,255,255,0.06);border-radius:10px;padding:14px;text-align:center;}
+.hero-stat .n{font-size:24px;font-weight:900;color:var(--gold);line-height:1;}
+.hero-stat .l{font-size:10px;color:rgba(255,255,255,0.6);font-weight:500;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+.hero-contact{margin-top:20px;display:flex;flex-direction:column;gap:8px;}
+.hero-contact a{color:rgba(255,255,255,0.7);font-size:12px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.2s;}
+.hero-contact a:hover{color:var(--gold);}
+.contact-icon{width:22px;height:22px;background:rgba(255,255,255,0.1);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+
+/* SECTIONS */
+.section{padding:80px 24px;}
+.section-alt{background:#fff;}
+.container{max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.section-title{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:16px;letter-spacing:-0.5px;}
+.section-sub{font-size:16px;color:var(--muted);max-width:580px;margin-bottom:48px;}
+
+/* SKILLS SCROLLER */
+.ticker-wrap{background:var(--navy);padding:0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;display:flex;align-items:stretch;}
+.ticker-scroll-area{flex:1;overflow:hidden;position:relative;}
+.ticker-track{display:flex;gap:0;width:max-content;transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);}
+.ticker-item{color:rgba(255,255,255,0.75);font-size:12px;font-weight:600;letter-spacing:1px;padding:14px 24px;white-space:nowrap;border-right:1px solid rgba(255,255,255,0.08);cursor:default;transition:all 0.2s;flex-shrink:0;}
+.ticker-item:hover{color:#fff;background:rgba(255,255,255,0.05);}
+.ticker-item .dot{color:var(--gold);margin-right:8px;font-size:10px;}
+/* Fade edges */
+.ticker-scroll-area::before,.ticker-scroll-area::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none;}
+.ticker-scroll-area::before{left:0;background:linear-gradient(90deg,var(--navy),transparent);}
+.ticker-scroll-area::after{right:0;background:linear-gradient(-90deg,var(--navy),transparent);}
+/* Arrow buttons */
+.ticker-btn{background:rgba(255,255,255,0.06);border:none;border-left:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);width:44px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.ticker-btn:hover{background:rgba(240,165,0,0.15);color:var(--gold);}
+.ticker-btn:active{background:rgba(240,165,0,0.25);}
+.ticker-btn-left{border-left:none;border-right:1px solid rgba(255,255,255,0.08);}
+
+/* STATS BAR */
+.stats-bar{background:var(--navy2);padding:40px 24px;}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);}
+.stat-cell{background:var(--navy2);padding:28px 24px;text-align:center;}
+.stat-cell .big{font-size:42px;font-weight:900;color:var(--gold);line-height:1;}
+.stat-cell .label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* CERT GRID */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative;overflow:hidden;transition:all 0.3s;cursor:default;}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent-color,var(--teal));}
+.cert-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.1);border-color:transparent;}
+.cert-vendor{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.cert-name{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:6px;line-height:1.3;}
+.cert-badge{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--muted);margin-bottom:16px;}
+.cert-skills{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.cert-skills li{font-size:12px;color:var(--slate);padding-left:14px;position:relative;line-height:1.4;}
+.cert-skills li::before{content:'›';position:absolute;left:0;color:var(--teal);font-weight:700;}
+
+/* EXPERIENCE TIMELINE */
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--teal),var(--navy2),var(--border));}
+.timeline-item{position:relative;margin-bottom:40px;}
+.timeline-dot{position:absolute;left:-28px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--teal);border:3px solid var(--card);box-shadow:0 0 0 2px var(--teal);}
+.timeline-item:first-child .timeline-dot{background:var(--gold);box-shadow:0 0 0 2px var(--gold);}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.25s;}
+.tl-card:hover{border-color:var(--teal);box-shadow:0 6px 24px rgba(10,124,110,0.08);}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:4px;flex-wrap:wrap;}
+.tl-title{font-size:16px;font-weight:800;color:var(--navy);}
+.tl-dates{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.tl-org{font-size:13px;font-weight:600;color:var(--teal);margin-bottom:12px;}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.tl-bullets li{font-size:13px;color:var(--slate);padding-left:16px;position:relative;line-height:1.5;}
+.tl-bullets li::before{content:'•';position:absolute;left:0;color:var(--teal);font-weight:700;}
+.tl-achiev{background:linear-gradient(90deg,rgba(10,124,110,0.06),transparent);border-left:3px solid var(--teal);padding:8px 12px;border-radius:0 6px 6px 0;margin-top:8px;}
+.tl-achiev-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.tl-achiev p{font-size:12px;color:var(--teal);font-weight:500;line-height:1.5;}
+
+/* SKILLS GRID */
+.skills-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.skill-group{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.skill-group-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.skill-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skill-tag{background:var(--bg);border:1px solid var(--border);color:var(--slate);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;font-family:'JetBrains Mono',monospace;}
+.skill-tag.hot{background:rgba(10,124,110,0.06);border-color:rgba(10,124,110,0.2);color:var(--teal);}
+
+/* INDUSTRIES */
+.industry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+.industry-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:all 0.25s;}
+.industry-card:hover{border-color:var(--teal);transform:translateY(-3px);}
+.industry-icon{font-size:32px;margin-bottom:10px;}
+.industry-name{font-size:13px;font-weight:700;color:var(--navy);}
+.industry-years{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:80px 24px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.contact-left h2{font-size:36px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px;}
+.contact-left p{color:rgba(255,255,255,0.7);font-size:15px;margin-bottom:28px;}
+.contact-items{display:flex;flex-direction:column;gap:14px;}
+.contact-item{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,0.8);font-size:14px;}
+.c-icon{width:40px;height:40px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:36px;}
+.contact-card h3{font-size:20px;font-weight:700;color:#fff;margin-bottom:20px;}
+.open-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(240,165,0,0.15);border:1px solid rgba(240,165,0,0.3);color:var(--gold);padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:20px;}
+.open-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(1.3);}}
+.role-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.role-tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;}
+
+/* FOOTER */
+footer{background:var(--navy);padding:24px;text-align:center;color:rgba(255,255,255,0.4);font-size:12px;border-top:1px solid rgba(255,255,255,0.06);}
+footer a{color:var(--gold);text-decoration:none;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.6s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* CV VIEWER MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);z-index:999;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}
+.modal-overlay.active{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:36px;max-width:460px;width:90%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.3);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes modalIn{from{opacity:0;transform:scale(0.88)translateY(20px);}to{opacity:1;transform:scale(1)translateY(0);}}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--bg);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:var(--border);color:var(--text);}
+.modal-title{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.photo-modal{background:rgba(10,17,29,0.96);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:18px;max-width:min(92vw,560px);width:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.45);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+.photo-modal img{display:block;max-width:100%;max-height:78vh;border-radius:18px;object-fit:contain;background:#000;}
+.photo-modal .modal-close{background:rgba(255,255,255,0.12);color:#fff;}
+.photo-modal .modal-close:hover{background:rgba(255,255,255,0.22);color:#fff;}
+.cv-modal{background:rgba(8,15,27,0.96);border:1px solid rgba(255,255,255,0.12);border-radius:18px;max-width:100vw;width:100%;height:100%;max-height:100%;padding:8px;box-shadow:0 24px 80px rgba(0,0,0,0.45);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);display:flex;flex-direction:column;overflow:hidden;}
+.cv-modal-shell{display:flex;flex-direction:column;gap:6px;min-height:0;flex:1;}
+.cv-modal-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:0 2px;flex:0 0 auto;}
+.cv-modal-copy{max-width:720px;}
+.cv-modal-title{font-size:18px;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-0.4px;}
+.cv-modal-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.cv-action-btn{border:none;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all 0.2s ease;}
+.cv-action-btn:hover{transform:translateY(-1px);}
+.cv-action-btn.primary{background:var(--gold);color:var(--navy);}
+.cv-action-btn.primary:hover{background:var(--gold-light);}
+.cv-action-btn.secondary{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);color:#fff;}
+.cv-action-btn.secondary:hover{background:rgba(255,255,255,0.14);}
+.cv-preview-wrap{position:relative;min-height:0;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);flex:1;display:flex;flex-direction:column;}
+.cv-frame-shell{position:relative;min-height:0;flex:1;overflow:hidden;border-radius:16px;background:#0b1220;}
+.cv-preview-frame{width:100%;height:100%;min-height:0;border:0;display:block;background:#111827;zoom:1.05;}
+.cv-preview-note{display:none;}
+.cv-page-list{display:none;}
+.cv-preview-loading,.cv-preview-fallback{display:none;}
+.cv-modal-close{top:18px;right:18px;background:rgba(255,255,255,0.1);color:#fff;backdrop-filter:blur(10px);}
+.cv-modal-close:hover{background:rgba(255,255,255,0.18);color:#fff;}
+
+/* NAV download btn */
+.nav-dl{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff!important;font-weight:600!important;display:flex;align-items:center;gap:6px;}
+.nav-dl:hover{background:rgba(255,255,255,0.18)!important;border-color:rgba(255,255,255,0.35)!important;}
+
+/* CV BANNER strip below hero */
+.cv-banner{background:linear-gradient(90deg,#0a3d35,#0d4a6e);padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.06);}
+.cv-banner-text{color:rgba(255,255,255,0.85);font-size:14px;font-weight:500;}
+.cv-banner-text strong{color:#fff;}
+.btn-cv-banner{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:8px;font-weight:700;font-size:13px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all 0.2s;}
+.btn-cv-banner:hover{background:var(--gold-light);transform:translateY(-1px);}
+.cv-status-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:6px;box-shadow:0 0 6px #4ade80;animation:pulse 2s infinite;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:36px;padding:64px 20px;}
+  .hero-card{max-width:520px;}
+  .contact-grid{grid-template-columns:1fr;gap:28px;}
+}
+@media(max-width:768px){
+  .nav-inner{padding:0 16px;}
+  .nav-links{display:none;}
+  .hero{padding-top:56px;}
+  .hero-inner{gap:28px;padding:48px 16px;}
+  .hero-card{display:block;padding:22px;border-radius:18px;width:100%;max-width:none;}
+  .hero-avatar{width:92px;height:92px;}
+  .hero-name{font-size:clamp(32px,9vw,48px);}
+  .hero-title{font-size:16px;margin-bottom:22px;}
+  .hero-tags{gap:6px;margin-bottom:28px;}
+  .hero-btns{flex-direction:column;}
+  .hero-btns > *{width:100%;justify-content:center;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .section,.contact-section{padding:64px 16px;}
+  .stats-bar{padding:32px 16px;}
+  .contact-left h2{font-size:30px;}
+  .cv-banner{padding:16px;}
+  .cv-banner-text{text-align:center;font-size:13px;}
+  .modal-overlay{padding:12px;}
+  .cv-modal{padding:10px;border-radius:18px;max-height:calc(100dvh - 20px);}
+  .cv-modal-shell{min-height:0;gap:8px;}
+  .cv-modal-top{flex-direction:column;align-items:stretch;}
+  .cv-modal-title{font-size:18px;padding-right:44px;}
+  .cv-action-btn{width:100%;justify-content:center;}
+  .cv-modal-actions{width:100%;}
+  .cv-preview-wrap{border-radius:14px;}
+  .cv-preview-frame{min-height:calc(100dvh - 118px);}
+}
+@media(max-width:520px){
+  .hero-inner{padding:42px 14px;}
+  .hero-tags{gap:8px;}
+  .hero-tag{font-size:11px;padding:5px 10px;}
+  .stats-inner{grid-template-columns:1fr;}
+  .stat-cell{padding:22px 18px;}
+  .industry-grid,.cert-grid,.skills-section{grid-template-columns:1fr;}
+  .contact-grid{gap:20px;}
+  .contact-left h2{font-size:26px;}
+  .contact-card{padding:24px;}
+  .cv-preview-frame{min-height:calc(100dvh - 108px);}
+  .cv-modal-close{top:12px;right:12px;}
+  .photo-modal{padding:12px;border-radius:18px;}
+  .photo-modal img{max-height:72vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">VISHWAJEET KUMAR<span> </span>SAH</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      <li><a href="#" class="nav-dl" onclick="openCVModal();return false;">⬇ CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">IT Infrastructure & Operations</div>
+      <h1 class="hero-name">Vishwajeet<em>Kumar Sah</em></h1>
+      <p class="hero-title">Assistant Manager – IT · Azure AZ-104 · CCNA · MCP</p>
+      <div class="hero-tags">
+        <span class="hero-tag">🏥 Healthcare IT</span>
+        <span class="hero-tag">🏭 Manufacturing</span>
+        <span class="hero-tag">🏦 Banking</span>
+        <span class="hero-tag">☁️ Azure</span>
+        <span class="hero-tag">🔐 Cybersecurity</span>
+        <span class="hero-tag">🌐 Networking</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">💼 Available to Hire</a>
+        <a href="#experience" class="btn-ghost">View Experience →</a>
+        <button onclick="openCVModal()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;font-family:inherit;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">⬇ View CV</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <button type="button" class="hero-avatar hero-avatar-btn" style="padding:0;background:none;" onclick="openPhotoModal()" aria-label="Open full profile photo">
+        <img src="profile.png.png" alt="Vishwajeet Kumar Sah profile photo" loading="eager" decoding="async">
+      </button>
+      <div style="color:#fff;font-size:15px;font-weight:700;margin-bottom:4px;">Vishwajeet Kumar Sah</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-bottom:4px;">Hyderabad, India</div>
+      <div style="color:rgba(255,255,255,0.5);font-size:11px;margin-bottom:16px;">🛂 Passport valid till Apr 2028</div>
+      <div class="hero-stat-grid">
+        <div class="hero-stat"><div class="n">8+</div><div class="l">Years IT</div></div>
+        <div class="hero-stat"><div class="n">5</div><div class="l">Industries</div></div>
+        <div class="hero-stat"><div class="n">500+</div><div class="l">Users Led</div></div>
+        <div class="hero-stat"><div class="n">4</div><div class="l">Certs</div></div>
+      </div>
+      <div class="hero-contact">
+        <a href="tel:+919507788852"><span class="contact-icon">📞</span>+91-9507788852</a>
+        <a href="mailto:kumarvishwajeet00@hotmail.com"><span class="contact-icon">✉️</span>kumarvishwajeet00@hotmail.com</a>
+        <a href="https://linkedin.com/in/vishwajeet-sah" target="_blank"><span class="contact-icon">in</span>linkedin.com/in/vishwajeet-sah</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SCROLLER -->
+<div class="ticker-wrap">
+  <button class="ticker-btn ticker-btn-left" id="tickerLeft" aria-label="Scroll left">&#8592;</button>
+  <div class="ticker-scroll-area">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+  <button class="ticker-btn" id="tickerRight" aria-label="Scroll right">&#8594;</button>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-cell"><div class="big">8+</div><div class="label">Years in Enterprise IT</div></div>
+    <div class="stat-cell"><div class="big">500+</div><div class="label">End Users Supported</div></div>
+    <div class="stat-cell"><div class="big">99.9%</div><div class="label">Network Uptime Achieved</div></div>
+    <div class="stat-cell"><div class="big">40%</div><div class="label">Vulnerability Reduction</div></div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-label reveal">Credentials</div>
+    <h2 class="section-title reveal">Certifications & Technical Keys</h2>
+    <p class="section-sub reveal">Industry-recognised certifications backed by real-world implementation experience across enterprise environments.</p>
+    <div class="cert-grid">
+
+      <div class="cert-card reveal" style="--accent-color:#0078D4;">
+        <div class="cert-vendor">Microsoft Certified</div>
+        <div class="cert-name">Azure Administrator Associate</div>
+        <div class="cert-badge">AZ-104</div>
+        <ul class="cert-skills">
+          <li>Azure VM deployment & auto-scaling</li>
+          <li>Virtual Networks (VNet) & NSG config</li>
+          <li>Azure AD, MFA & Conditional Access</li>
+          <li>Azure Backup & Recovery Vault</li>
+          <li>Azure Monitor, Alerts & Log Analytics</li>
+          <li>Role-Based Access Control (RBAC)</li>
+          <li>Azure Storage Accounts & Blob</li>
+          <li>Resource Groups & ARM Templates</li>
+        </ul>
+      </div>
+
+      <div class="cert-card reveal" style="--accent-color:#1BA0D8;">
+        <div class="cert-vendor">Cisco Certified</div>
+        <div class="cert-name">Network Associate</div>
+        <div class="cert-badge">CCNA</div>
+        <ul class="cert-skills">
+          <li>OSI / TCP-IP model deep dive</li>
+          <li>IPv4 / IPv6 addressing & subnetting</li>
+          <li>VLANs, Trunking (802.1Q) & STP</li>
+          <li>OSPF, EIGRP & BGP fundamentals</li>
+          <li>ACLs & NAT / PAT configuration</li>
+          <li>VPN technologies (Site-to-Site, SSL)</li>
+          <li>WAN technologies & troubleshooting</li>
+          <li>Network security best practices</li>
+        </ul>
+      </div>
+
+      <div class="cert-card reveal" style="--accent-color:#107C10;">
+        <div class="cert-vendor">Microsoft Certified</div>
+        <div class="cert-name">Microsoft Certified Professional</div>
+        <div class="cert-badge">MCP – Windows Server</div>
+        <ul class="cert-skills">
+          <li>Active Directory DS & DNS design</li>
+          <li>Group Policy Objects (GPO) management</li>
+          <li>Windows Server Roles & Features</li>
+          <li>DHCP Server & IP Address Management</li>
+          <li>File, Print & Remote Desktop Services</li>
+          <li>PowerShell server administration</li>
+          <li>Server performance & event monitoring</li>
+          <li>Backup, recovery & failover planning</li>
+        </ul>
+      </div>
+
+      <div class="cert-card reveal" style="--accent-color:#E85D04;">
+        <div class="cert-vendor">Jetking Certified</div>
+        <div class="cert-name">Hardware & Network Engineer</div>
+        <div class="cert-badge">JCHNE Plus</div>
+        <ul class="cert-skills">
+          <li>PC assembly, BIOS & POST diagnostics</li>
+          <li>HDD, SSD & RAID 0/1/5/6/10 config</li>
+          <li>Network cabling (Cat5e/Cat6/Fibre)</li>
+          <li>Managed switch & router setup</li>
+          <li>Wireless 802.11 a/b/g/n/ac standards</li>
+          <li>Printer & peripheral troubleshooting</li>
+          <li>OS installation, imaging & deployment</li>
+          <li>Hardware lifecycle management</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Pursuing -->
+    <div style="margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px;" class="reveal">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;">📚 Currently Pursuing</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span style="background:rgba(10,124,110,0.08);border:1px solid rgba(10,124,110,0.2);color:var(--teal);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">ITIL 4 Foundation</span>
+        <span style="background:rgba(10,124,110,0.08);border:1px solid rgba(10,124,110,0.2);color:var(--teal);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">CompTIA Security+</span>
+        <span style="background:rgba(10,124,110,0.08);border:1px solid rgba(10,124,110,0.2);color:var(--teal);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">AWS Cloud Practitioner</span>
+        <span style="background:rgba(10,124,110,0.08);border:1px solid rgba(10,124,110,0.2);color:var(--teal);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;">Microsoft SC-900</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section section-alt" id="experience">
+  <div class="container">
+    <div class="section-label reveal">Career Journey</div>
+    <h2 class="section-title reveal">Professional Experience</h2>
+    <p class="section-sub reveal">8+ years of progressive IT leadership across Healthcare, Manufacturing, Banking & Logistics.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">Assistant Manager – IT Infrastructure & Operations</div>
+            <div class="tl-dates">Nov 2025 – May 2026</div>
+          </div>
+          <div class="tl-org">🏥 Asian Institute of Nephrology & Urology (AINU) · Hyderabad</div>
+          <ul class="tl-bullets">
+            <li>Managed enterprise IT for a 300-user healthcare environment — servers, network, storage & endpoints</li>
+            <li>Led team of 3 IT engineers; maintained SLA adherence & ran weekly IT performance reviews</li>
+            <li>Administered Windows Server, VMware ESXi, AD, Microsoft 365, FortiGate Firewall & Intune MDM</li>
+            <li>Deployed Intune MDM for 100+ devices with Conditional Access & device compliance enforcement</li>
+            <li>Managed vendor negotiations — achieved 15% reduction in annual IT spend</li>
+            <li>Supported IT audit & healthcare compliance; implemented CIS security baselines</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>Zero non-conformances in IT audit · Reduced incident resolution time 30% · MDM rollout improved compliance posture 45%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">IT Administrator</div>
+            <div class="tl-dates">Jul 2024 – Nov 2025</div>
+          </div>
+          <div class="tl-org">🏭 Global Aluminium Pvt. Ltd. · Multi-site Manufacturing</div>
+          <ul class="tl-bullets">
+            <li>Managed plant-wide IT across 2 manufacturing sites supporting 200+ users with team of 5 engineers</li>
+            <li>Administered Sophos XGS2100 Firewall, FortiGate VPN, VLAN segmentation & endpoint security</li>
+            <li>Supported full ERP lifecycle — implementation, integration testing & training across 5 departments</li>
+            <li>NAS with RAID 5/6 & Veeam Backup — maintained 99.9% data availability; tested DR plans quarterly</li>
+            <li>Implemented patch cycles for 200+ endpoints; reduced vulnerability exposure by 40%</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>Delivered greenfield IT project on time & budget · 99.9% uptime · ERP rollout cut reporting time 25%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">Desktop Support Engineer</div>
+            <div class="tl-dates">Nov 2023 – May 2024</div>
+          </div>
+          <div class="tl-org">🏦 NTT DATA · Client: Citi Bank</div>
+          <ul class="tl-bullets">
+            <li>L1/L2 support for 150+ banking users with 96% CSAT score</li>
+            <li>Microsoft 365, Exchange Online & Active Directory administration</li>
+            <li>McAfee/Trellix Endpoint Security; 30+ tickets/day via ServiceNow within SLA</li>
+            <li>Cisco VoIP support for desk phones, softphones & call queue management</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>96% SLA compliance · Resolved recurring network profile corruption affecting 20 users</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">IT Support Engineer</div>
+            <div class="tl-dates">May 2022 – Oct 2023</div>
+          </div>
+          <div class="tl-org">🚀 Renovision Automation Services · Client: Swiggy</div>
+          <ul class="tl-bullets">
+            <li>AD, FortiGate Firewall, VPN & Microsoft Intune MDM for 200+ devices</li>
+            <li>Azure VM creation & management; BitLocker encryption enforcement via Azure AD</li>
+            <li>40+ daily tickets via Freshservice; 78% first-contact resolution rate (vs 65% target)</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>Led Intune MDM rollout for 200+ endpoints · FCR 78% vs 65% team target</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">Network Administrator</div>
+            <div class="tl-dates">Mar 2020 – Dec 2021</div>
+          </div>
+          <div class="tl-org">🌾 Nutan Bhabya Rural Agro Solution · Client: TCS iON</div>
+          <ul class="tl-bullets">
+            <li>Administered 266 computers & 13 D-Link managed switches with VLAN & port security for 512 PCs</li>
+            <li>NAS with RAID; CCTV/NVR installation; 500 users supported across 2 geographic sites</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>Zero unplanned downtime managing 500 PCs · Security incidents reduced 60% via VLAN segmentation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div class="tl-title">Desktop Support Engineer</div>
+            <div class="tl-dates">Apr 2018 – Jan 2020</div>
+          </div>
+          <div class="tl-org">🔧 Dynacons System Solution Ltd. · Client: GTL Infra</div>
+          <ul class="tl-bullets">
+            <li>L1/L2 support for 100+ users; IT asset management via ManageEngine</li>
+            <li>Change management processes to minimise downtime; vendor negotiations & procurement</li>
+          </ul>
+          <div class="tl-achiev">
+            <div class="tl-achiev-label">⚡ Key Wins</div>
+            <p>100+ users single-handedly · Procurement lead time reduced 20%</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-label reveal">Expertise</div>
+    <h2 class="section-title reveal">Technical Skills</h2>
+    <p class="section-sub reveal">A deep toolkit built across 8+ years of hands-on enterprise IT environments.</p>
+    <div class="skills-section">
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(0,120,212,0.1);">☁️</div>Cloud & Microsoft</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">Azure AZ-104</span>
+          <span class="skill-tag hot">Azure VM / VNet</span>
+          <span class="skill-tag hot">Azure AD</span>
+          <span class="skill-tag">Intune MDM</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">Exchange Online</span>
+          <span class="skill-tag">SharePoint</span>
+          <span class="skill-tag">Teams Admin</span>
+          <span class="skill-tag">Azure Backup</span>
+          <span class="skill-tag">Azure Monitor</span>
+          <span class="skill-tag">ARM Templates</span>
+          <span class="skill-tag">AWS Basics</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(27,160,216,0.1);">🌐</div>Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">Cisco (CCNA)</span>
+          <span class="skill-tag hot">FortiGate Firewall</span>
+          <span class="skill-tag hot">Sophos XGS2100</span>
+          <span class="skill-tag">Aruba Wi-Fi</span>
+          <span class="skill-tag">VLAN / Trunking</span>
+          <span class="skill-tag">OSPF / EIGRP</span>
+          <span class="skill-tag">VPN (SSL/IPSec)</span>
+          <span class="skill-tag">NAT / ACL</span>
+          <span class="skill-tag">STP / EtherChannel</span>
+          <span class="skill-tag">DNS / DHCP</span>
+          <span class="skill-tag">PRTG / SolarWinds</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(16,124,16,0.1);">🖥️</div>Servers & Virtualisation</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">VMware ESXi 6.x/7.x</span>
+          <span class="skill-tag hot">vCenter / vSphere</span>
+          <span class="skill-tag">Hyper-V</span>
+          <span class="skill-tag">Windows Server 2012–2019</span>
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">Group Policy (GPO)</span>
+          <span class="skill-tag">DHCP / DNS Server</span>
+          <span class="skill-tag">RDS / File Services</span>
+          <span class="skill-tag">Linux (Ubuntu/CentOS)</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(220,38,38,0.1);">🔐</div>Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">Zero Trust principles</span>
+          <span class="skill-tag">Seqrite Endpoint</span>
+          <span class="skill-tag">McAfee / Trellix</span>
+          <span class="skill-tag">Patch Management</span>
+          <span class="skill-tag">BitLocker</span>
+          <span class="skill-tag">MFA / Conditional Access</span>
+          <span class="skill-tag">Vulnerability Assessment</span>
+          <span class="skill-tag">DLP Policies</span>
+          <span class="skill-tag">CIS Baselines</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(234,88,12,0.1);">💾</div>Storage & DR</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">NAS / RAID 0/1/5/6/10</span>
+          <span class="skill-tag hot">Veeam Backup</span>
+          <span class="skill-tag">Disaster Recovery</span>
+          <span class="skill-tag">RTO / RPO Planning</span>
+          <span class="skill-tag">Offsite Backup</span>
+          <span class="skill-tag">Data Replication</span>
+          <span class="skill-tag">Azure Backup Vault</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title"><div class="skill-icon" style="background:rgba(124,58,237,0.1);">⚙️</div>ITSM & Scripting</div>
+        <div class="skill-tags">
+          <span class="skill-tag hot">PowerShell</span>
+          <span class="skill-tag">ServiceNow</span>
+          <span class="skill-tag">Freshservice</span>
+          <span class="skill-tag">ManageEngine</span>
+          <span class="skill-tag">SLA Management</span>
+          <span class="skill-tag">Incident Management</span>
+          <span class="skill-tag">Change Management</span>
+          <span class="skill-tag">ITIL Practices</span>
+          <span class="skill-tag">Zabbix / PRTG</span>
+          <span class="skill-tag">Basic Bash</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Industries -->
+    <div style="margin-top:48px;">
+      <div class="section-label reveal" style="margin-bottom:20px;">Industries Served</div>
+      <div class="industry-grid">
+        <div class="industry-card reveal"><div class="industry-icon">🏥</div><div class="industry-name">Healthcare</div><div class="industry-years">AINU – 2025/26</div></div>
+        <div class="industry-card reveal"><div class="industry-icon">🏭</div><div class="industry-name">Manufacturing</div><div class="industry-years">Global Aluminium</div></div>
+        <div class="industry-card reveal"><div class="industry-icon">🏦</div><div class="industry-name">Banking / Finance</div><div class="industry-years">Citi Bank via NTT</div></div>
+        <div class="industry-card reveal"><div class="industry-icon">🚀</div><div class="industry-name">Logistics / Tech</div><div class="industry-years">Swiggy via Renovision</div></div>
+        <div class="industry-card reveal"><div class="industry-icon">🌾</div><div class="industry-name">Agri / Government</div><div class="industry-years">TCS iON project</div></div>
+        <div class="industry-card reveal"><div class="industry-icon">📡</div><div class="industry-name">Telecom Infra</div><div class="industry-years">GTL Infra via Dynacons</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Let's Build Something Reliable Together</h2>
+        <p>Open to IT Infrastructure, Network Admin, Systems Engineer, IT Manager, and Azure Admin roles — India, Gulf, or international.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="c-icon">📞</div><a href="tel:+919507788852" style="color:inherit;text-decoration:none;">+91-9507788852</a></div>
+          <div class="contact-item"><div class="c-icon">✉️</div><a href="mailto:kumarvishwajeet00@hotmail.com" style="color:inherit;text-decoration:none;">kumarvishwajeet00@hotmail.com</a></div>
+          <div class="contact-item"><div class="c-icon" style="font-size:11px;font-weight:700;">in</div><a href="https://linkedin.com/in/vishwajeet-sah" target="_blank" style="color:inherit;text-decoration:none;">linkedin.com/in/vishwajeet-sah</a></div>
+          <div class="contact-item"><div class="c-icon">📍</div>Hyderabad, India · Passport valid Apr 2028</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="open-badge">Available to Join Immediately</div>
+        <h3>Open to Opportunities</h3>
+        <div class="role-tags">
+          <span class="role-tag">IT Infrastructure Engineer</span>
+          <span class="role-tag">Network Administrator</span>
+          <span class="role-tag">Systems Engineer</span>
+          <span class="role-tag">IT Operations Manager</span>
+          <span class="role-tag">Azure Administrator</span>
+          <span class="role-tag">IT Support Lead</span>
+          <span class="role-tag">IT Manager</span>
+          <span class="role-tag">Cloud & Infra Engineer</span>
+        </div>
+        <div style="margin-top:24px;padding:16px;background:rgba(255,255,255,0.06);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">
+          🎓 <strong style="color:#fff;">MCA</strong> – Manipal University (2024)<br/>
+          🎓 <strong style="color:#fff;">B.Sc.</strong> – Jai Prakash University (2015)<br/>
+          🌍 <strong style="color:#fff;">Open to relocation</strong> – India · Gulf · International
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV DOWNLOAD BANNER -->
+<div class="cv-banner">
+  <div class="cv-banner-text"><span class="cv-status-dot"></span><strong>CV Available</strong> — View Vishwajeet's full resume</div>
+  <button class="btn-cv-banner" onclick="openCVModal()">⬇ View CV</button>
+</div>
+
+<!-- CV VIEWER MODAL -->
+<div class="modal-overlay" id="cvModal" onclick="if(event.target===this)closeCVModal()">
+  <div class="cv-modal">
+    <button class="modal-close cv-modal-close" onclick="closeCVModal()" aria-label="Close resume preview">✕</button>
+    <div class="cv-modal-shell">
+      <div class="cv-modal-top">
+        <div class="cv-modal-copy">
+          <div class="cv-modal-title">Vishwajeet Kumar Sah</div>
+        </div>
+        <div class="cv-modal-actions">
+          <button class="cv-action-btn primary" onclick="downloadPdf()">⬇ Download PDF</button>
+          <button class="cv-action-btn secondary" onclick="closeCVModal()">✕ Close</button>
+        </div>
+      </div>
+      <div class="cv-preview-wrap">
+        <div class="cv-frame-shell">
+          <iframe class="cv-preview-frame" src="files/CV.pdf#page=1&zoom=page-width&toolbar=0&navpanes=0&scrollbar=1" title="Resume PDF preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE PHOTO MODAL -->
+<div class="modal-overlay" id="photoModal" onclick="if(event.target===this)closePhotoModal()">
+  <div class="photo-modal">
+    <button class="modal-close" onclick="closePhotoModal()">✕</button>
+    <img src="profile.png.png" alt="Vishwajeet Kumar Sah full profile photo">
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Vishwajeet Kumar Sah · IT Infrastructure & Operations Professional · Built for static hosting on <a href="https://pages.github.com">GitHub Pages</a></p>
+</footer>
+
+<script>
+// SKILLS SCROLLER — static, arrow-driven
+const skills = ["Azure AZ-104","VMware ESXi","Active Directory","FortiGate Firewall","Sophos XGS2100","Microsoft 365","Intune MDM","CCNA Networking","NAS / RAID Storage","Veeam Backup","ServiceNow","PowerShell","VLAN / Switching","Hyper-V","Endpoint Security","SLA Management","ITIL Practices","Zero Trust Security","Windows Server","Azure VM / VNet","Patch Management","Cisco Networking","Exchange Online","SharePoint Online","Veeam DR","Zabbix / PRTG","ManageEngine","BitLocker","MFA / Conditional Access"];
+const track = document.getElementById('ticker');
+track.innerHTML = skills.map(s=>`<span class="ticker-item"><span class="dot">◆</span>${s}</span>`).join('');
+
+let scrollPos = 0;
+const STEP = 220;
+
+function getMaxScroll(){
+  const area = document.querySelector('.ticker-scroll-area');
+  return track.scrollWidth - area.clientWidth;
+}
+
+document.getElementById('tickerRight').addEventListener('click', ()=>{
+  scrollPos = Math.min(scrollPos + STEP, getMaxScroll());
+  track.style.transform = `translateX(-${scrollPos}px)`;
+});
+document.getElementById('tickerLeft').addEventListener('click', ()=>{
+  scrollPos = Math.max(scrollPos - STEP, 0);
+  track.style.transform = `translateX(-${scrollPos}px)`;
+});
+
+// Also allow mouse drag / touch scroll on the area
+let isDragging = false, startX = 0, startScroll = 0;
+const area = document.querySelector('.ticker-scroll-area');
+area.addEventListener('mousedown', e=>{ isDragging=true; startX=e.clientX; startScroll=scrollPos; area.style.cursor='grabbing'; });
+window.addEventListener('mouseup', ()=>{ isDragging=false; area.style.cursor=''; });
+window.addEventListener('mousemove', e=>{
+  if(!isDragging) return;
+  const dx = startX - e.clientX;
+  scrollPos = Math.max(0, Math.min(startScroll + dx, getMaxScroll()));
+  track.style.transform = `translateX(-${scrollPos}px)`;
+});
+// Touch
+area.addEventListener('touchstart', e=>{ startX=e.touches[0].clientX; startScroll=scrollPos; },{passive:true});
+area.addEventListener('touchmove', e=>{
+  const dx = startX - e.touches[0].clientX;
+  scrollPos = Math.max(0, Math.min(startScroll + dx, getMaxScroll()));
+  track.style.transform = `translateX(-${scrollPos}px)`;
+},{passive:true});
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Stagger reveals
+document.querySelectorAll('.cert-card.reveal, .skill-group.reveal, .industry-card.reveal, .timeline-item.reveal').forEach((el,i)=>{
+  el.style.transitionDelay = (i % 4) * 0.08 + 's';
+});
+
+// ── CV VIEWER MODAL ──
+const CV_PDF_URL = 'files/CV.pdf';
+
+function openCVModal(){
+  document.getElementById('cvModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeCVModal(){
+  document.getElementById('cvModal').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+function openPhotoModal(){
+  document.getElementById('photoModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closePhotoModal(){
+  document.getElementById('photoModal').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+async function downloadPdf(){
+  try{
+    const response = await fetch(CV_PDF_URL, { cache: 'no-store' });
+    if(!response.ok) throw new Error('Failed to fetch PDF');
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'CV.pdf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  }catch(err){
+    window.location.href = CV_PDF_URL;
+  }
+}
+
+// Close on Escape
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    closeCVModal();
+    closePhotoModal();
+  }
+});
+</script>
+</body>
+</html>
